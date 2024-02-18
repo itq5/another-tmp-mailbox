@@ -240,7 +240,7 @@ def schd_cleaner(seconds, interval):
 
 
 if __name__ == "__main__":
-    define("domain", type=str)
+    define("domain", multiple=True, type=str)
     define("database", type=str, default="mail.db")
     define("listen", type=str, default="0.0.0.0")
     define("port", type=int, default=8888)
