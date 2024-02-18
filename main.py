@@ -272,7 +272,7 @@ if __name__ == "__main__":
     server.listen(options.port, address=options.listen,
                   xheaders=True)
 
-    SmtpdHandler.domains.append(options.domain)
+    SmtpdHandler.domains.extend(options.domain)
     smtp = Controller(SmtpdHandler(), hostname="0.0.0.0",
                       port=25)
     smtp.start()
