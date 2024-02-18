@@ -58,6 +58,34 @@
 	setIntervalImmed = function(func, interval) {
 		func(); return setInterval(func, interval)
 	}
+var clipboard = new Clipboard('.copyable');
+
+  $customShortId = $('#customShortid');
+  $shortId = $('#shortid');
+  $customTheme = 'check';
+  $placeholder_old = '请等待分配临时邮箱';
+  $placeholder_new = '请输入不带后缀邮箱账号';
+  $customShortId.on('click',function() {
+    var self = $(this);
+    var editEnable = true;
+    $shortId.prop('disabled', false);
+    if(self.hasClass('edit')) {
+      $shortId.val('');
+      self.removeClass('edit');
+      self.toggleClass($customTheme);
+      $shortId.prop('placeholder', $placeholder_new);
+    } else {
+      $shortId.prop('disabled', true);
+      self.removeClass('check');
+      self.toggleClass('edit');
+      $shortId.prop('placeholder',$placeholder_old);
+      $mailUser = $shortId.val();
+      var mailaddress = $mailUser + '@' + location.hostname;
+      setMailAddress($mailUser);
+      $shortId.val(mailaddress);
+      window.location.reload();
+    }
+  });
 	$("#releaseAddress")[0].onclick  = function() {
 		$.ajax({
 		        type: "DELETE",
